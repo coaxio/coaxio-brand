@@ -19,7 +19,7 @@
     "./tailwind": "./dist/tokens.tailwind.js",
     "./tokens.json": "./tokens/coaxio.tokens.json"
   },
-  "files": ["dist", "tokens", "BRAND.md", "TRADEMARK.md", "LICENSE"],
+  "files": ["dist", "tokens", "BRAND.md", "TRADEMARK.md", "LICENSE", "LICENSE-DOCS"],
   "scripts": {
     "build": "node build/build.mjs",
     "check": "node build/build.mjs --check",

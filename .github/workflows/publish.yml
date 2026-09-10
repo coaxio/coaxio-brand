@@ -3,23 +3,38 @@ name: publish
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
 
 permissions:
   contents: read
-  id-token: write   # required for npm provenance
+  id-token: write # required for OIDC trusted publishing
 
 jobs:
-  npm:
+  stage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      # NOTE: `registry-url` is deliberately omitted. Setting it makes
+      # setup-node write `_authToken=${NODE_AUTH_TOKEN}` into the runner's
+      # .npmrc. With no NPM_TOKEN secret that variable expands to an empty
+      # string, npm reads the line as "auth is already configured", skips the
+      # OIDC exchange entirely and fails with ENEEDAUTH or a 404. Leaving it
+      # out lets npm detect the OIDC environment and authenticate properly.
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org
+          node-version: 24
+
+      # OIDC trusted publishing needs npm >= 11.5.1; `npm stage` needs
+      # >= 11.15.0. Upgrade explicitly so a runner image change cannot
+      # silently break either.
+      - name: Ensure npm supports OIDC and staging
+        run: |
+          npm install -g npm@latest
+          npm --version
 
       - name: Verify the tag matches package.json
+        if: startsWith(github.ref, 'refs/tags/v')
         run: |
           tag="${GITHUB_REF_NAME#v}"
           pkg=$(node -p "require('./package.json').version")
@@ -28,9 +43,26 @@ jobs:
             exit 1
           fi
 
-      - run: node build/build.mjs --check
+      - name: Verify dist/ matches tokens
+        run: node build/build.mjs --check
 
-      # --provenance links the published tarball to this workflow run.
-      - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # This stages the version rather than publishing it. Nothing is
+      # installable until a maintainer approves it with 2FA, either via
+      # `npm stage approve <id>` or the Staged Packages tab on npmjs.com.
+      #
+      # The trusted publisher for this package is configured WITHOUT direct
+      # publish permission, so `npm publish` here would be rejected by the
+      # registry. That is intentional: a compromised workflow can queue a
+      # release, not ship one.
+      #
+      # No NODE_AUTH_TOKEN. Authentication comes from the OIDC token minted by
+      # `id-token: write`. --provenance links the tarball to this run.
+      - name: Stage release
+        run: npm stage publish --provenance --access public
+
+      - name: Report
+        run: |
+          echo "Version staged. Approve it to publish:"
+          echo "  npm stage list @coaxio/tokens"
+          echo "  npm stage approve <stage-id>"
+          echo "or use the Staged Packages tab on npmjs.com."
