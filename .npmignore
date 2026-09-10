@@ -1,0 +1,6 @@
+# dist/ and tokens/ are published; everything else is not.
+build/
+templates/
+logo/png/
+.github/
+derive.py

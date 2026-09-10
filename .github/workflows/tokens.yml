@@ -1,0 +1,42 @@
+name: tokens
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # dist/ is committed so consumers can pull it from a tag without a build
+      # step. This fails the build if it drifts from the token source.
+      - name: Verify dist/ matches tokens
+        run: node build/build.mjs --check
+
+      - name: Fail on prohibited contrast pairs
+        run: |
+          if grep -q 'prohibited at any size' dist/CONTRAST.md; then
+            echo "::error::Token colours produce a pairing below 3:1. See dist/CONTRAST.md."
+            sed -n '/prohibited at any size/,$p' dist/CONTRAST.md
+            exit 1
+          fi
+          echo "All approved pairings clear the 3:1 floor."
+
+      - name: Validate SVG templates parse
+        run: |
+          for f in templates/*.svg logo/svg/*.svg; do
+            [ -e "$f" ] || continue
+            python3 -c "import xml.etree.ElementTree as E,sys; E.parse(sys.argv[1])" "$f" \
+              && echo "ok  $f" || exit 1
+          done

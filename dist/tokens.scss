@@ -1,0 +1,152 @@
+// Coaxio design tokens — GENERATED FILE, DO NOT EDIT.
+// Source: tokens/coaxio.tokens.json
+// Regenerate: node build/build.mjs
+
+$coaxio-primitive-petrol-50: #F4F8F9;
+$coaxio-primitive-petrol-100: #E1EDEF;
+$coaxio-primitive-petrol-200: #C6DDE1;
+$coaxio-primitive-petrol-300: #9CC7CE;
+$coaxio-primitive-petrol-400: #6DB0BB;
+$coaxio-primitive-petrol-500: #478E9A;
+$coaxio-primitive-petrol-600: #35666E;
+$coaxio-primitive-petrol-700: #27474C;
+$coaxio-primitive-petrol-800: #1B3034;
+$coaxio-primitive-petrol-850: #142426;
+// Brand anchor. Page background.
+$coaxio-primitive-petrol-900: #0E1A1C;
+$coaxio-primitive-petrol-950: #080E0F;
+$coaxio-primitive-copper-200: #EBD2C2;
+$coaxio-primitive-copper-300: #DEB091;
+// Brand anchor. Hover/active state of copper-500.
+$coaxio-primitive-copper-400: #E0955F;
+// Brand anchor. 5.51:1 on petrol-900 (AA text, not AAA).
+$coaxio-primitive-copper-500: #C97D4B;
+$coaxio-primitive-copper-600: #B3622D;
+$coaxio-primitive-copper-700: #884D26;
+$coaxio-primitive-mint-100: #E0F5EE;
+$coaxio-primitive-mint-200: #BFEDDE;
+// Brand anchor. 11.82:1 on petrol-900.
+$coaxio-primitive-mint-300: #8FE3C7;
+$coaxio-primitive-mint-400: #7BE0BE;
+$coaxio-primitive-mint-500: #4DDBAB;
+$coaxio-primitive-mint-600: #26C08C;
+$coaxio-primitive-status-danger: #E06C5A;
+$coaxio-primitive-status-warning: #E0B65F;
+// Intentionally the same as mint-300: in Coaxio, success IS signal.
+$coaxio-primitive-status-success: #8FE3C7;
+// Page background. Never use as a text colour.
+$coaxio-color-surface-base: #0E1A1C;
+// Cards, panels, code blocks.
+$coaxio-color-surface-raised: #142426;
+// Insets, terminal blocks, footer.
+$coaxio-color-surface-sunken: #080E0F;
+// Modals, dropdowns, tooltips.
+$coaxio-color-surface-overlay: #1B3034;
+// Body copy on surface.base. 16.60:1 — AAA.
+$coaxio-color-text-primary: #F4F8F9;
+// Supporting copy. 12.53:1 — AAA.
+$coaxio-color-text-secondary: #C6DDE1;
+// Metadata, captions. 7.25:1 — AAA at normal size.
+$coaxio-color-text-muted: #6DB0BB;
+// Disabled, placeholders. 4.74:1 — AA only. Never for body copy.
+$coaxio-color-text-faint: #478E9A;
+// For use on mint or copper fills.
+$coaxio-color-text-inverse: #0E1A1C;
+// Emphasis in running text. 7.30:1 — AAA.
+$coaxio-color-text-accent: #E0955F;
+// Links, active nav. 11.82:1 — AAA.
+$coaxio-color-text-signal: #8FE3C7;
+// Primary CTA fills, active borders. Pair with text.inverse.
+$coaxio-color-accent-base: #C97D4B;
+$coaxio-color-accent-hover: #E0955F;
+$coaxio-color-accent-active: #B3622D;
+// Low-emphasis accent fills and tinted borders. A dark fill: pair with text.primary, never with text.inverse.
+$coaxio-color-accent-subtle: #884D26;
+// Links, the signal-spine motif, live/OK indicators. Not a general-purpose accent.
+$coaxio-color-signal-base: #8FE3C7;
+$coaxio-color-signal-hover: #BFEDDE;
+$coaxio-color-signal-dim: #26C08C;
+// Default hairlines and dividers.
+$coaxio-color-border-subtle: #1B3034;
+// Input borders, card outlines.
+$coaxio-color-border-strong: #27474C;
+// Keyboard focus ring. Never remove without replacement.
+$coaxio-color-border-focus: #8FE3C7;
+$coaxio-color-feedback-danger: #E06C5A;
+$coaxio-color-feedback-warning: #E0B65F;
+$coaxio-color-feedback-success: #8FE3C7;
+// Headings and the wordmark. Never for body copy below 18px.
+$coaxio-font-family-display: "Space Grotesk", system-ui, sans-serif;
+$coaxio-font-family-body: Inter, system-ui, sans-serif;
+// Code, CLI output, version strings, technical labels.
+$coaxio-font-family-mono: "JetBrains Mono", ui-monospace, monospace;
+$coaxio-font-weight-regular: 400;
+$coaxio-font-weight-medium: 500;
+$coaxio-font-weight-semibold: 600;
+// Display only. Do not use for body emphasis — use medium.
+$coaxio-font-weight-bold: 700;
+$coaxio-font-size-xs: 0.8rem;
+$coaxio-font-size-sm: 0.875rem;
+$coaxio-font-size-base: 1rem;
+$coaxio-font-size-md: 1.25rem;
+$coaxio-font-size-lg: 1.5625rem;
+$coaxio-font-size-xl: 1.9531rem;
+$coaxio-font-size-2xl: 2.4414rem;
+$coaxio-font-size-3xl: 3.0518rem;
+$coaxio-font-size-4xl: 3.8147rem;
+// Display sizes, xl and above.
+$coaxio-font-line-height-tight: 1.1;
+$coaxio-font-line-height-snug: 1.3;
+// Body copy.
+$coaxio-font-line-height-normal: 1.6;
+// Long-form article body.
+$coaxio-font-line-height-relaxed: 1.75;
+// Space Grotesk at 3xl and above.
+$coaxio-font-letter-spacing-tighter: -0.03em;
+// Space Grotesk at xl to 2xl.
+$coaxio-font-letter-spacing-tight: -0.015em;
+$coaxio-font-letter-spacing-normal: 0em;
+// Mono at small sizes, for legibility.
+$coaxio-font-letter-spacing-wide: 0.02em;
+$coaxio-space-0: 0;
+$coaxio-space-1: 0.25rem;
+$coaxio-space-2: 0.5rem;
+$coaxio-space-3: 0.75rem;
+$coaxio-space-4: 1rem;
+$coaxio-space-5: 1.5rem;
+$coaxio-space-6: 2rem;
+$coaxio-space-7: 3rem;
+$coaxio-space-8: 4rem;
+$coaxio-space-9: 6rem;
+$coaxio-space-10: 8rem;
+$coaxio-radius-none: 0;
+// Code blocks, tags, structural containers.
+$coaxio-radius-sm: 2px;
+// Buttons, inputs.
+$coaxio-radius-md: 4px;
+// Cards, panels.
+$coaxio-radius-lg: 8px;
+// Pills and status dots only.
+$coaxio-radius-full: 9999px;
+$coaxio-border-width-hairline: 1px;
+// Focus rings, active tab indicators, the signal spine.
+$coaxio-border-width-thick: 2px;
+// Max line length for body copy. Under 80 characters.
+$coaxio-layout-measure: 68ch;
+$coaxio-layout-content: 48rem;
+$coaxio-layout-wide: 72rem;
+$coaxio-motion-duration-fast: 120ms;
+$coaxio-motion-duration-normal: 220ms;
+$coaxio-motion-duration-slow: 400ms;
+$coaxio-motion-easing-standard: cubic-bezier(0.2, 0, 0.2, 1);
+$coaxio-motion-easing-enter: cubic-bezier(0, 0, 0.2, 1);
+$coaxio-motion-easing-exit: cubic-bezier(0.4, 0, 1, 1);
+$coaxio-brand-name: Coaxio;
+$coaxio-brand-domain: coaxio.dev;
+$coaxio-brand-tagline: Day-zero scaffolding for homelab infrastructure;
+// Minimum clear space on all sides, where x = the outer radius of the coax cross-section mark.
+$coaxio-brand-logo-clear-space: 1x;
+// Below this, use the simplified single-ring favicon variant.
+$coaxio-brand-logo-min-width-mark: 16px;
+// Below this, drop the wordmark and use the mark alone.
+$coaxio-brand-logo-min-width-lockup: 96px;

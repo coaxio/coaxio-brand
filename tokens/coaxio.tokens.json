@@ -1,0 +1,203 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$description": "Coaxio design tokens. Tier 1 = primitives (raw values, no meaning). Tier 2 = semantic (role in the interface). Tier 3 = component. Only ever change a primitive to shift the whole palette; change a semantic token to reassign a role.",
+
+  "primitive": {
+    "$description": "Raw palette. Never reference these directly from application code — use the semantic tier.",
+    "petrol": {
+      "$type": "color",
+      "$description": "Deep petrol-teal. The surface family. 900 is the brand anchor.",
+      "950": { "$value": "#080E0F" },
+      "900": { "$value": "#0E1A1C", "$description": "Brand anchor. Page background." },
+      "850": { "$value": "#142426" },
+      "800": { "$value": "#1B3034" },
+      "700": { "$value": "#27474C" },
+      "600": { "$value": "#35666E" },
+      "500": { "$value": "#478E9A" },
+      "400": { "$value": "#6DB0BB" },
+      "300": { "$value": "#9CC7CE" },
+      "200": { "$value": "#C6DDE1" },
+      "100": { "$value": "#E1EDEF" },
+      "50":  { "$value": "#F4F8F9" }
+    },
+    "copper": {
+      "$type": "color",
+      "$description": "Copper accent. Warm counterweight to petrol. 500 and 400 are the brand anchors.",
+      "700": { "$value": "#884D26" },
+      "600": { "$value": "#B3622D" },
+      "500": { "$value": "#C97D4B", "$description": "Brand anchor. 5.51:1 on petrol-900 (AA text, not AAA)." },
+      "400": { "$value": "#E0955F", "$description": "Brand anchor. Hover/active state of copper-500." },
+      "300": { "$value": "#DEB091" },
+      "200": { "$value": "#EBD2C2" }
+    },
+    "mint": {
+      "$type": "color",
+      "$description": "Mint-cyan signal. Reserved for signal, not decoration. 300 is the brand anchor.",
+      "600": { "$value": "#26C08C" },
+      "500": { "$value": "#4DDBAB" },
+      "400": { "$value": "#7BE0BE" },
+      "300": { "$value": "#8FE3C7", "$description": "Brand anchor. 11.82:1 on petrol-900." },
+      "200": { "$value": "#BFEDDE" },
+      "100": { "$value": "#E0F5EE" }
+    },
+    "status": {
+      "$type": "color",
+      "$description": "Functional states. Deliberately outside the brand families so they read as system output, not brand voice.",
+      "danger":  { "$value": "#E06C5A" },
+      "warning": { "$value": "#E0B65F" },
+      "success": { "$value": "#8FE3C7", "$description": "Intentionally the same as mint-300: in Coaxio, success IS signal." }
+    }
+  },
+
+  "color": {
+    "$type": "color",
+    "$description": "Semantic tier. This is what application code consumes.",
+    "surface": {
+      "base":    { "$value": "{primitive.petrol.900}", "$description": "Page background. Never use as a text colour." },
+      "raised":  { "$value": "{primitive.petrol.850}", "$description": "Cards, panels, code blocks." },
+      "sunken":  { "$value": "{primitive.petrol.950}", "$description": "Insets, terminal blocks, footer." },
+      "overlay": { "$value": "{primitive.petrol.800}", "$description": "Modals, dropdowns, tooltips." }
+    },
+    "text": {
+      "primary":   { "$value": "{primitive.petrol.50}",  "$description": "Body copy on surface.base. 16.60:1 — AAA." },
+      "secondary": { "$value": "{primitive.petrol.200}", "$description": "Supporting copy. 12.53:1 — AAA." },
+      "muted":     { "$value": "{primitive.petrol.400}", "$description": "Metadata, captions. 7.25:1 — AAA at normal size." },
+      "faint":     { "$value": "{primitive.petrol.500}", "$description": "Disabled, placeholders. 4.74:1 — AA only. Never for body copy." },
+      "inverse":   { "$value": "{primitive.petrol.900}", "$description": "For use on mint or copper fills.", "$extensions": { "dev.coaxio.role": "on-fill" } },
+      "accent":    { "$value": "{primitive.copper.400}", "$description": "Emphasis in running text. 7.30:1 — AAA." },
+      "signal":    { "$value": "{primitive.mint.300}",   "$description": "Links, active nav. 11.82:1 — AAA." }
+    },
+    "accent": {
+      "base":   { "$value": "{primitive.copper.500}", "$description": "Primary CTA fills, active borders. Pair with text.inverse.", "$extensions": { "dev.coaxio.role": "fill" } },
+      "hover":  { "$value": "{primitive.copper.400}", "$extensions": { "dev.coaxio.role": "fill" } },
+      "active": { "$value": "{primitive.copper.600}", "$extensions": { "dev.coaxio.role": "fill" } },
+      "subtle": { "$value": "{primitive.copper.700}", "$description": "Low-emphasis accent fills and tinted borders. A dark fill: pair with text.primary, never with text.inverse.", "$extensions": { "dev.coaxio.role": "fill-dark" } }
+    },
+    "signal": {
+      "base":  { "$value": "{primitive.mint.300}", "$description": "Links, the signal-spine motif, live/OK indicators. Not a general-purpose accent." },
+      "hover": { "$value": "{primitive.mint.200}" },
+      "dim":   { "$value": "{primitive.mint.600}" }
+    },
+    "border": {
+      "subtle": { "$value": "{primitive.petrol.800}", "$description": "Default hairlines and dividers." },
+      "strong": { "$value": "{primitive.petrol.700}", "$description": "Input borders, card outlines." },
+      "focus":  { "$value": "{primitive.mint.300}",   "$description": "Keyboard focus ring. Never remove without replacement." }
+    },
+    "feedback": {
+      "danger":  { "$value": "{primitive.status.danger}" },
+      "warning": { "$value": "{primitive.status.warning}" },
+      "success": { "$value": "{primitive.status.success}" }
+    }
+  },
+
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "display": { "$value": ["Space Grotesk", "system-ui", "sans-serif"], "$description": "Headings and the wordmark. Never for body copy below 18px." },
+      "body":    { "$value": ["Inter", "system-ui", "sans-serif"] },
+      "mono":    { "$value": ["JetBrains Mono", "ui-monospace", "monospace"], "$description": "Code, CLI output, version strings, technical labels." }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular":  { "$value": 400 },
+      "medium":   { "$value": 500 },
+      "semibold": { "$value": 600 },
+      "bold":     { "$value": 700, "$description": "Display only. Do not use for body emphasis — use medium." }
+    },
+    "size": {
+      "$type": "dimension",
+      "$description": "Modular scale, ratio 1.25, base 16px.",
+      "xs":   { "$value": "0.8rem" },
+      "sm":   { "$value": "0.875rem" },
+      "base": { "$value": "1rem" },
+      "md":   { "$value": "1.25rem" },
+      "lg":   { "$value": "1.5625rem" },
+      "xl":   { "$value": "1.9531rem" },
+      "2xl":  { "$value": "2.4414rem" },
+      "3xl":  { "$value": "3.0518rem" },
+      "4xl":  { "$value": "3.8147rem" }
+    },
+    "lineHeight": {
+      "$type": "number",
+      "tight":   { "$value": 1.1,  "$description": "Display sizes, xl and above." },
+      "snug":    { "$value": 1.3 },
+      "normal":  { "$value": 1.6,  "$description": "Body copy." },
+      "relaxed": { "$value": 1.75, "$description": "Long-form article body." }
+    },
+    "letterSpacing": {
+      "$type": "dimension",
+      "tighter": { "$value": "-0.03em", "$description": "Space Grotesk at 3xl and above." },
+      "tight":   { "$value": "-0.015em", "$description": "Space Grotesk at xl to 2xl." },
+      "normal":  { "$value": "0em" },
+      "wide":    { "$value": "0.02em", "$description": "Mono at small sizes, for legibility." }
+    }
+  },
+
+  "space": {
+    "$type": "dimension",
+    "$description": "4px base grid.",
+    "0":  { "$value": "0" },
+    "1":  { "$value": "0.25rem" },
+    "2":  { "$value": "0.5rem" },
+    "3":  { "$value": "0.75rem" },
+    "4":  { "$value": "1rem" },
+    "5":  { "$value": "1.5rem" },
+    "6":  { "$value": "2rem" },
+    "7":  { "$value": "3rem" },
+    "8":  { "$value": "4rem" },
+    "9":  { "$value": "6rem" },
+    "10": { "$value": "8rem" }
+  },
+
+  "radius": {
+    "$type": "dimension",
+    "$description": "Hierarchy is meaningful: sharper for structural elements, softer for interactive ones.",
+    "none": { "$value": "0" },
+    "sm":   { "$value": "2px", "$description": "Code blocks, tags, structural containers." },
+    "md":   { "$value": "4px", "$description": "Buttons, inputs." },
+    "lg":   { "$value": "8px", "$description": "Cards, panels." },
+    "full": { "$value": "9999px", "$description": "Pills and status dots only." }
+  },
+
+  "border": {
+    "$type": "dimension",
+    "width": {
+      "hairline": { "$value": "1px" },
+      "thick":    { "$value": "2px", "$description": "Focus rings, active tab indicators, the signal spine." }
+    }
+  },
+
+  "layout": {
+    "$type": "dimension",
+    "measure":  { "$value": "68ch", "$description": "Max line length for body copy. Under 80 characters." },
+    "content":  { "$value": "48rem" },
+    "wide":     { "$value": "72rem" }
+  },
+
+  "motion": {
+    "duration": {
+      "$type": "duration",
+      "fast":   { "$value": "120ms" },
+      "normal": { "$value": "220ms" },
+      "slow":   { "$value": "400ms" }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "standard": { "$value": [0.2, 0, 0.2, 1] },
+      "enter":    { "$value": [0, 0, 0.2, 1] },
+      "exit":     { "$value": [0.4, 0, 1, 1] }
+    }
+  },
+
+  "brand": {
+    "$description": "Brand-level constants that are not styling values.",
+    "name":     { "$type": "string", "$value": "Coaxio" },
+    "domain":   { "$type": "string", "$value": "coaxio.dev" },
+    "tagline":  { "$type": "string", "$value": "Day-zero scaffolding for homelab infrastructure" },
+    "logo": {
+      "clearSpace":  { "$type": "string", "$value": "1x", "$description": "Minimum clear space on all sides, where x = the outer radius of the coax cross-section mark." },
+      "minWidthMark":    { "$type": "dimension", "$value": "16px", "$description": "Below this, use the simplified single-ring favicon variant." },
+      "minWidthLockup":  { "$type": "dimension", "$value": "96px", "$description": "Below this, drop the wordmark and use the mark alone." }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "@coaxio/tokens",
+  "version": "0.1.0",
+  "description": "Coaxio design tokens: CSS custom properties, SCSS variables, JS objects and a Tailwind theme.",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://coaxio.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coaxio/coaxio-brand.git"
+  },
+  "bugs": "https://github.com/coaxio/coaxio-brand/issues",
+  "keywords": ["design-tokens", "design-system", "coaxio", "css-variables", "w3c-design-tokens"],
+  "sideEffects": false,
+  "exports": {
+    ".": "./dist/tokens.js",
+    "./css": "./dist/tokens.css",
+    "./scss": "./dist/tokens.scss",
+    "./tailwind": "./dist/tokens.tailwind.js",
+    "./tokens.json": "./tokens/coaxio.tokens.json"
+  },
+  "files": ["dist", "tokens", "BRAND.md", "TRADEMARK.md", "LICENSE"],
+  "scripts": {
+    "build": "node build/build.mjs",
+    "check": "node build/build.mjs --check",
+    "prepublishOnly": "npm run build && npm run check"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
