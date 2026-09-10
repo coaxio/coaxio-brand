@@ -13,8 +13,8 @@ before anything else:
 
 | What | Terms |
 |---|---|
-| `tokens/`, `build/`, `dist/` | MIT — see `LICENSE` |
-| `BRAND.md`, `TRADEMARK.md`, this file | CC BY 4.0 — see `LICENSE-DOCS` |
+| `tokens/`, `build/`, `dist/` | MIT - see `LICENSE` |
+| `BRAND.md`, `TRADEMARK.md`, this file | CC BY 4.0 - see `LICENSE-DOCS` |
 | The **Coaxio name and mark** | Not licensed. See `TRADEMARK.md` |
 
 You can fork this, take the tokens, adapt the guidelines. You cannot ship your own project
